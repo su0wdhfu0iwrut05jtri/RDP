@@ -132,7 +132,6 @@ if not World1 then
         HakiPrice = "``` ƒ 1,500 ```" 
         HakiImage = "https://i.imgur.com/my9fRio.png"  
     end
-    print(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("ColorsDealer", "1"))
 end
 
 --Sword
@@ -209,7 +208,7 @@ if not World1 then
             }
         }
         request({
-            Url = "https://2c3c75b5-f558-475f-9655-220abb456c04-00-qdsnfdt3olyk.picard.replit.dev/safe-webhook", -- Ganti dengan URL Replit Anda jika digunakan secara online
+            Url = "https://nodedeploy-production-1172.up.railway.app/safe-webhook", -- Ganti dengan URL Replit Anda jika digunakan secara online
             Body = HttpService:JSONEncode(LegendaryHaki),
             Method = "POST",
             Headers = {
@@ -218,78 +217,72 @@ if not World1 then
             }
         })
     end
-    
-    if not World1 then --Work
-        local RemoteDealer = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("ColorsDealer","1")
-        if table.find(NormalHaki, RemoteDealer) then
-            print(Haki.."Webhook")
-            local NormHaki = {
-                ["type"] = "normal",
-                ["data"] = {
-                    ["content"] = "",
-                    ["username"] = "Normal Haki",
-                    ["avatar_url"] = "https://cdn.discordapp.com/attachments/962302731308105758/1323104514986872923/White_Black_Dark_Brutalist_Rock_Metal_Playlist_Cover_2.png",
-                    ["embeds"] = {
-                        {   
-                            ["author"] = {
-                                ["name"] = "Thunder Z",
-                                ["icon_url"] = "https://cdn.discordapp.com/attachments/962302731308105758/1323104514986872923/White_Black_Dark_Brutalist_Rock_Metal_Playlist_Cover_2.png",--'https://cdn.discordapp.com/attachments/962302731308105758/1071360247781924955/THUNDERZ_HUB_4.pnog'
+     --Work
+    if table.find(NormalHaki, RemoteDealer) then
+        local NormHaki = {
+            ["type"] = "normal",
+            ["data"] = {
+                ["content"] = "",
+                ["username"] = "Normal Haki",
+                ["avatar_url"] = "https://cdn.discordapp.com/attachments/962302731308105758/1323104514986872923/White_Black_Dark_Brutalist_Rock_Metal_Playlist_Cover_2.png",
+                ["embeds"] = {
+                    {   
+                        ["author"] = {
+                            ["name"] = "Thunder Z",
+                            ["icon_url"] = "https://cdn.discordapp.com/attachments/962302731308105758/1323104514986872923/White_Black_Dark_Brutalist_Rock_Metal_Playlist_Cover_2.png",--'https://cdn.discordapp.com/attachments/962302731308105758/1071360247781924955/THUNDERZ_HUB_4.pnog'
+                        },
+                        ["type"] = "rich",
+                        ["title"] = "**Normal Haki Color Checker**",
+                        ["thumbnail"] = {
+                            ["url"] = HakiImage,
+                        },
+                        ["color"] = HakiColorDex,
+                        ["fields"] = {
+                            {
+                                ["name"] = "[ 💎 ]  Color :",
+                                ["value"] = "```".. Haki .."```"
                             },
-                            ["type"] = "rich",
-                            ["title"] = "**Normal Haki Color Checker**",
-                            ["thumbnail"] = {
-                                ["url"] = HakiImage,
+                            {
+                                ["name"] = "**[💵] Haki Price:**",
+                                ["value"] = HakiPrice
                             },
-                            ["color"] = HakiColorDex,
-                            ["fields"] = {
-                                {
-                                    ["name"] = "[ 💎 ]  Color :",
-                                    ["value"] = "```".. Haki .."```"
-                                },
-                                {
-                                    ["name"] = "**[💵] Haki Price:**",
-                                    ["value"] = HakiPrice
-                                },
-                                {
-                                    ["name"] = "[ 🌊 ]  Location :",
-                                    ["value"] = "```"..Lautan.."```"
-                                },
-                                {
-                                    ["name"] = "[ 👥 ]  Players In Server :",
-                                    ["value"] = "```"..PlayerCount.."/12".."```"
-                                },
-                                {
-                                    ["name"] = "[ 📃 ]  Job Id :",
-                                    ["value"] = "```"..game.JobId.."```"
-                                },
-                                {
-                                    ["name"] = "[ 🔗 ] Join Server - Execute this to join Server :",
-                                    ["value"] = "```".."game:GetService('TeleportService'):TeleportToPlaceInstance(game.PlaceId,'"..game.JobId.."')".."```"
-                                },
+                            {
+                                ["name"] = "[ 🌊 ]  Location :",
+                                ["value"] = "```"..Lautan.."```"
                             },
-                            ["description"] =  "[Click here to Join for Roblox Web Version](https://www.roblox.com/home?placeId="..game.JobId..") | ",
-                            ["footer"] = {
-                                ["text"] = "Thunder Z • "..formattedDate.." at "..formattedTime
+                            {
+                                ["name"] = "[ 👥 ]  Players In Server :",
+                                ["value"] = "```"..PlayerCount.."/12".."```"
                             },
-                            ["image"] = {
-                                ["url"] = "https://i.imgur.com/2wosJIs.gif"
-                            }
+                            {
+                                ["name"] = "[ 📃 ]  Job Id :",
+                                ["value"] = "```"..game.JobId.."```"
+                            },
+                            {
+                                ["name"] = "[ 🔗 ] Join Server - Execute this to join Server :",
+                                ["value"] = "```".."game:GetService('TeleportService'):TeleportToPlaceInstance(game.PlaceId,'"..game.JobId.."')".."```"
+                            },
+                        },
+                        ["description"] =  "[Click here to Join for Roblox Web Version](https://www.roblox.com/home?placeId="..game.JobId..") | ",
+                        ["footer"] = {
+                            ["text"] = "Thunder Z • "..formattedDate.." at "..formattedTime
+                        },
+                        ["image"] = {
+                            ["url"] = "https://i.imgur.com/2wosJIs.gif"
                         }
                     }
                 }
             }
-            local response = request({
-                Url = "https://2c3c75b5-f558-475f-9655-220abb456c04-00-qdsnfdt3olyk.picard.replit.dev/safe-webhook", -- Ganti dengan URL Replit Anda jika digunakan secara online
-                Body = HttpService:JSONEncode(NormHaki),
-                Method = "POST",
-                Headers = {
-                    ["content-type"] = "application/json",
-                    ["authorization"] = "fd9ef5416e31069a489c5ff1f806117622383520d1a35425d9bdc428e1d3f9cc" -- Token Anda
-                }
-            })
-            print(response.StatusCode)
-            print(response.Body)
-        end
+        }
+        local response = request({
+            Url = "https://nodedeploy-production-1172.up.railway.app/safe-webhook", -- Ganti dengan URL Replit Anda jika digunakan secara online
+            Body = HttpService:JSONEncode(NormHaki),
+            Method = "POST",
+            Headers = {
+                ["content-type"] = "application/json",
+                ["authorization"] = "fd9ef5416e31069a489c5ff1f806117622383520d1a35425d9bdc428e1d3f9cc" -- Token Anda
+            }
+        })
     end
 end
 
@@ -347,8 +340,8 @@ for _, v in next, workspace:GetChildren() do --Work
                 }
             }
         }
-        local response = request({
-            Url = "https://2c3c75b5-f558-475f-9655-220abb456c04-00-qdsnfdt3olyk.picard.replit.dev/safe-webhook", -- Ganti dengan URL Replit Anda jika digunakan secara online
+        request({
+            Url = "https://nodedeploy-production-1172.up.railway.app/safe-webhook", -- Ganti dengan URL Replit Anda jika digunakan secara online
             Body = HttpService:JSONEncode(buahbuahan),
             Method = "POST",
             Headers = {
@@ -356,8 +349,6 @@ for _, v in next, workspace:GetChildren() do --Work
                 ["authorization"] = "fd9ef5416e31069a489c5ff1f806117622383520d1a35425d9bdc428e1d3f9cc" -- Token Anda
             }
         })
-        print(response.StatusCode)
-        print(response.Body)
     end
 end
 
@@ -425,7 +416,7 @@ if World3 and game:GetService("Workspace").Map:FindFirstChild("MysticIsland") th
         }
     }
     request({
-        Url = "https://2c3c75b5-f558-475f-9655-220abb456c04-00-qdsnfdt3olyk.picard.replit.dev/safe-webhook", -- Ganti dengan URL Replit Anda jika digunakan secara online
+        Url = "https://nodedeploy-production-1172.up.railway.app/safe-webhook", -- Ganti dengan URL Replit Anda jika digunakan secara online
         Body = HttpService:JSONEncode(mirage),
         Method = "POST",
         Headers = {
@@ -482,7 +473,7 @@ elseif World3 and game:GetService("Workspace")["_WorldOrigin"].Locations:FindFir
         }
     }
     request({
-        Url = "https://2c3c75b5-f558-475f-9655-220abb456c04-00-qdsnfdt3olyk.picard.replit.dev/safe-webhook", -- Ganti dengan URL Replit Anda jika digunakan secara online
+        Url = "https://nodedeploy-production-1172.up.railway.app/safe-webhook", -- Ganti dengan URL Replit Anda jika digunakan secara online
         Body = HttpService:JSONEncode(Kitsune),
         Method = "POST",
         Headers = {
@@ -539,7 +530,7 @@ elseif World3 and game:GetService("Workspace")["_WorldOrigin"].Locations:FindFir
         }
     }
     request({
-        Url = "https://2c3c75b5-f558-475f-9655-220abb456c04-00-qdsnfdt3olyk.picard.replit.dev/safe-webhook", -- Ganti dengan URL Replit Anda jika digunakan secara online
+        Url = "https://nodedeploy-production-1172.up.railway.app/safe-webhook", -- Ganti dengan URL Replit Anda jika digunakan secara online
         Body = HttpService:JSONEncode(Prehistoric),
         Method = "POST",
         Headers = {
@@ -596,7 +587,7 @@ elseif World3 and game:GetService("Workspace")["_WorldOrigin"].Locations:FindFir
         }
     }
     request({
-        Url = "https://2c3c75b5-f558-475f-9655-220abb456c04-00-qdsnfdt3olyk.picard.replit.dev/safe-webhook", -- Ganti dengan URL Replit Anda jika digunakan secara online
+        Url = "https://nodedeploy-production-1172.up.railway.app/safe-webhook", -- Ganti dengan URL Replit Anda jika digunakan secara online
         Body = HttpService:JSONEncode(Hydra),
         Method = "POST",
         Headers = {
@@ -656,7 +647,7 @@ elseif World3 and game:GetService("Lighting").Sky.MoonTextureId=="http://www.rob
         }
     }
     request({
-        Url = "https://2c3c75b5-f558-475f-9655-220abb456c04-00-qdsnfdt3olyk.picard.replit.dev/safe-webhook", -- Ganti dengan URL Replit Anda jika digunakan secara online
+        Url = "https://nodedeploy-production-1172.up.railway.app/safe-webhook", -- Ganti dengan URL Replit Anda jika digunakan secara online
         Body = HttpService:JSONEncode(moon),
         Method = "POST",
         Headers = {
@@ -716,7 +707,7 @@ elseif World2 then
             }
         }
         request({
-            Url = "https://2c3c75b5-f558-475f-9655-220abb456c04-00-qdsnfdt3olyk.picard.replit.dev/safe-webhook", -- Ganti dengan URL Replit Anda jika digunakan secara online
+            Url = "https://nodedeploy-production-1172.up.railway.app/safe-webhook", -- Ganti dengan URL Replit Anda jika digunakan secara online
             Body = HttpService:JSONEncode(sword),
             Method = "POST",
             Headers = {
@@ -781,7 +772,7 @@ for i, v in pairs(game:GetService("ReplicatedStorage"):GetChildren()) do
             }
         }
         request({
-            Url = "https://2c3c75b5-f558-475f-9655-220abb456c04-00-qdsnfdt3olyk.picard.replit.dev/safe-webhook", -- Ganti dengan URL Replit Anda jika digunakan secara online
+            Url = "https://nodedeploy-production-1172.up.railway.app/safe-webhook", -- Ganti dengan URL Replit Anda jika digunakan secara online
             Body = HttpService:JSONEncode(bosswak),
             Method = "POST",
             Headers = {
