@@ -309,69 +309,71 @@ for _, v in next, workspace:GetChildren() do
     end
 end
 
-if #fruits > 0 then
-    local buahbuahan = {
-        ["type"] = "fruithook",
-        ["data"] = {
-            ["content"] = "",
-            ["username"] = "Fruit Finder",
-            ["avatar_url"] = "https://cdn.discordapp.com/attachments/962302731308105758/1323104514986872923/White_Black_Dark_Brutalist_Rock_Metal_Playlist_Cover_2.png",
-            ["embeds"] = {
-                {   
-                    ["author"] = {
-                        ["name"] = "Thunder Z",
-                        ["icon_url"] = 'https://cdn.discordapp.com/attachments/962302731308105758/1323104514986872923/White_Black_Dark_Brutalist_Rock_Metal_Playlist_Cover_2.png'
-                    },
-                    ["type"] = "rich",
-                    ["title"] = "**Fruit Spawn Checker**",
-                    ["thumbnail"] = {
-                        ["url"] = "https://i.imgur.com/cQhjBMz.png",
-                    },
-                    ["color"] = 209,
-                    ["fields"] = {
-                        {
-                            ["name"] = "[ 🍒 ]  Fruit in Server :",
-                            ["value"] = "```"..table.concat(fruits, "\n").."```"
+if v.Name:find("Fruit") and (v:IsA("Model") or v:IsA("Tool")) then
+    if #fruits > 0 then
+        local buahbuahan = {
+            ["type"] = "fruithook",
+            ["data"] = {
+                ["content"] = "",
+                ["username"] = "Fruit Finder",
+                ["avatar_url"] = "https://cdn.discordapp.com/attachments/962302731308105758/1323104514986872923/White_Black_Dark_Brutalist_Rock_Metal_Playlist_Cover_2.png",
+                ["embeds"] = {
+                    {   
+                        ["author"] = {
+                            ["name"] = "Thunder Z",
+                            ["icon_url"] = 'https://cdn.discordapp.com/attachments/962302731308105758/1323104514986872923/White_Black_Dark_Brutalist_Rock_Metal_Playlist_Cover_2.png'
                         },
-                        {
-                            ["name"] = "[ 👥 ]  Players In Server :",
-                            ["value"] = "```"..PlayerCount.."/12".."```"
+                        ["type"] = "rich",
+                        ["title"] = "**Fruit Spawn Checker**",
+                        ["thumbnail"] = {
+                            ["url"] = "https://i.imgur.com/cQhjBMz.png",
                         },
-                        {
-                            ["name"] = "[ 🌊 ]  Location :",
-                            ["value"] = "```"..Lautan.."```"
+                        ["color"] = 209,
+                        ["fields"] = {
+                            {
+                                ["name"] = "[ 🍒 ]  Fruit in Server :",
+                                ["value"] = "```"..table.concat(fruits, "\n").."```"
+                            },
+                            {
+                                ["name"] = "[ 👥 ]  Players In Server :",
+                                ["value"] = "```"..PlayerCount.."/12".."```"
+                            },
+                            {
+                                ["name"] = "[ 🌊 ]  Location :",
+                                ["value"] = "```"..Lautan.."```"
+                            },
+                            {
+                                ["name"] = "[ 📃 ]  Job Id :",
+                                ["value"] = "```"..game.JobId.."```"
+                            },
+                            {
+                                ["name"] = "[ 🔗 ] Join Server - Execute this to join Server :",
+                                ["value"] = "```".."game:GetService('TeleportService'):TeleportToPlaceInstance(game.PlaceId,'"..game.JobId.."')".."```"
+                            },
+                            
                         },
-                        {
-                            ["name"] = "[ 📃 ]  Job Id :",
-                            ["value"] = "```"..game.JobId.."```"
+                        ["footer"] = {
+                            ["text"] = "Thunder Z • "..formattedDate.." at "..formattedTime.." • "..region
                         },
-                        {
-                            ["name"] = "[ 🔗 ] Join Server - Execute this to join Server :",
-                            ["value"] = "```".."game:GetService('TeleportService'):TeleportToPlaceInstance(game.PlaceId,'"..game.JobId.."')".."```"
-                        },
-                        
-                    },
-                    ["footer"] = {
-                        ["text"] = "Thunder Z • "..formattedDate.." at "..formattedTime.." • "..region
-                    },
-                    ["image"] = {
-                        ["url"] = "https://i.imgur.com/2wosJIs.gif"
+                        ["image"] = {
+                            ["url"] = "https://i.imgur.com/2wosJIs.gif"
+                        }
                     }
                 }
             }
         }
-    }
-    request({
-        Url = "https://nodedeploy-production-1172.up.railway.app/safe-webhook", -- Ganti dengan URL Replit Anda jika digunakan secara online
-        Body = HttpService:JSONEncode(buahbuahan),
-        Method = "POST",
-        Headers = {
-            ["content-type"] = "application/json",
-            ["authorization"] = "fd9ef5416e31069a489c5ff1f806117622383520d1a35425d9bdc428e1d3f9cc" -- Token Anda
-        }
-    })
-else
+        request({
+            Url = "https://nodedeploy-production-1172.up.railway.app/safe-webhook", -- Ganti dengan URL Replit Anda jika digunakan secara online
+            Body = HttpService:JSONEncode(buahbuahan),
+            Method = "POST",
+            Headers = {
+                ["content-type"] = "application/json",
+                ["authorization"] = "fd9ef5416e31069a489c5ff1f806117622383520d1a35425d9bdc428e1d3f9cc" -- Token Anda
+            }
+        })
     
+    
+    end
 end
 
 -- [Mystic Island]
