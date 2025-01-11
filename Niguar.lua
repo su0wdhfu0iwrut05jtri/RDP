@@ -331,7 +331,7 @@ if #fruitstable > 0 then
                     ["fields"] = {
                         {
                             ["name"] = "[ 🍒 ]  Fruit in Server :",
-                            ["value"] = "```"..table.concat(fruits, "\n").."```"
+                            ["value"] = "```"..table.concat(fruitstable, "\n").."```"
                         },
                         {
                             ["name"] = "[ 👥 ]  Players In Server :",
