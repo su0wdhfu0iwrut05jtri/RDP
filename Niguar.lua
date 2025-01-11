@@ -3,13 +3,28 @@
 -- [Main Requiment Webhook]
 local HttpService = game:GetService("HttpService")
 local PlayerCount = #game.Players:GetPlayers()
-local timeZoneOffset = 25200 -- 7 hours ahead of UTC
 
-local currentUnixTime = os.time()
-local currentDateTime = os.date("*t", currentUnixTime + timeZoneOffset)
+-- Mendapatkan waktu lokal dari perangkat pemain
+local date = os.date("*t") -- Waktu lokal perangkat pemain
+local hour = date.hour
+local ampm = hour < 12 and "AM" or "PM"
+local formattedTime = string.format("%02d:%02d:%02d %s", 
+    ((hour - 1) % 12) + 1, 
+    date.min, 
+    date.sec, 
+    ampm
+)
+local formattedDate = string.format("%02d/%02d/%04d", date.day, date.month, date.year)
 
-local formattedTime = string.format("%02d:%02d:%02d", currentDateTime.hour, currentDateTime.min, currentDateTime.sec)
-local formattedDate = string.format("%d-%02d-%02d", currentDateTime.year, currentDateTime.month, currentDateTime.day)
+-- Mendapatkan region pemain
+local region = "Unknown Region" -- Default region jika gagal mendapatkannya
+local success, result = pcall(function()
+    return game:GetService("LocalizationService"):GetCountryRegionForPlayerAsync(game:GetService("Players").LocalPlayer)
+end)
+
+if success then
+    region = result
+end
 
 local NormalHaki = {
     "Orange Soda",
@@ -198,7 +213,7 @@ if not World1 then
                         },
                         ["description"] =  "[Click here to Join for Roblox Web Version](https://www.roblox.com/home?placeId="..game.JobId..") | ",
                         ["footer"] = {
-                            ["text"] = "Thunder Z • "..formattedDate.." at "..formattedTime
+                            ["text"] = "Thunder Z • "..formattedDate.." at "..formattedTime.." • "..region
                         },
                         ["image"] = {
                             ["url"] = "https://i.imgur.com/2wosJIs.gif"
@@ -265,7 +280,7 @@ if not World1 then
                         },
                         ["description"] =  "[Click here to Join for Roblox Web Version](https://www.roblox.com/home?placeId="..game.JobId..") | ",
                         ["footer"] = {
-                            ["text"] = "Thunder Z • "..formattedDate.." at "..formattedTime
+                            ["text"] = "Thunder Z • "..formattedDate.." at "..formattedTime.." • "..region
                         },
                         ["image"] = {
                             ["url"] = "https://i.imgur.com/2wosJIs.gif"
@@ -337,7 +352,7 @@ if #fruits > 0 then
                         
                     },
                     ["footer"] = {
-                        ["text"] = "Thunder Z • "..formattedDate.." at "..formattedTime
+                        ["text"] = "Thunder Z • "..formattedDate.." at "..formattedTime.." • "..region
                     },
                     ["image"] = {
                         ["url"] = "https://i.imgur.com/2wosJIs.gif"
@@ -412,7 +427,7 @@ if World3 and game:GetService("Workspace").Map:FindFirstChild("MysticIsland") th
                     },
                     ["description"] =  "[Click here to Join for Roblox Web Version](https://www.roblox.com/home?placeId="..game.JobId..") | ",
                     ["footer"] = {
-                        ["text"] = "Thunder Z • "..formattedDate.." at "..formattedTime
+                        ["text"] = "Thunder Z • "..formattedDate.." at "..formattedTime.." • "..region
                     },
                     ["image"] = {
                         ["url"] = "https://i.imgur.com/2wosJIs.gif"
@@ -469,7 +484,7 @@ elseif World3 and game:GetService("Workspace")["_WorldOrigin"].Locations:FindFir
                     },
                     ["description"] =  "[Click here to Join for Roblox Web Version](https://www.roblox.com/home?placeId="..game.JobId..") | ",
                     ["footer"] = {
-                        ["text"] = "Thunder Z • "..formattedDate.." at "..formattedTime
+                        ["text"] = "Thunder Z • "..formattedDate.." at "..formattedTime.." • "..region
                     },
                     ["image"] = {
                         ["url"] = "https://i.imgur.com/2wosJIs.gif"
@@ -526,7 +541,7 @@ elseif World3 and game:GetService("Workspace")["_WorldOrigin"].Locations:FindFir
                     },
                     ["description"] =  "[Click here to Join for Roblox Web Version](https://www.roblox.com/home?placeId="..game.JobId..") | ",
                     ["footer"] = {
-                        ["text"] = "Thunder Z • "..formattedDate.." at "..formattedTime
+                        ["text"] = "Thunder Z • "..formattedDate.." at "..formattedTime.." • "..region
                     },
                     ["image"] = {
                         ["url"] = "https://i.imgur.com/2wosJIs.gif"
@@ -583,7 +598,7 @@ elseif World3 and game:GetService("Workspace")["_WorldOrigin"].Locations:FindFir
                     },
                     ["description"] =  "[Click here to Join for Roblox Web Version](https://www.roblox.com/home?placeId="..game.JobId..") | ",
                     ["footer"] = {
-                        ["text"] = "Thunder Z • "..formattedDate.." at "..formattedTime
+                        ["text"] = "Thunder Z • "..formattedDate.." at "..formattedTime.." • "..region
                     },
                     ["image"] = {
                         ["url"] = "https://i.imgur.com/2wosJIs.gif"
@@ -643,7 +658,7 @@ elseif World3 and game:GetService("Lighting").Sky.MoonTextureId=="http://www.rob
                     },
                     ["description"] =  "[Click here to Join for Roblox Web Version](https://www.roblox.com/home?placeId="..game.JobId..") | ",
                     ["footer"] = {
-                        ["text"] = "Thunder Z • "..formattedDate.." at "..formattedTime
+                        ["text"] = "Thunder Z • "..formattedDate.." at "..formattedTime.." • "..region
                     },
                     ["image"] = {
                         ["url"] = "https://i.imgur.com/2wosJIs.gif"
@@ -703,7 +718,7 @@ elseif World2 then
                         },
                         ["description"] =  "[Click here to Join for Roblox Web Version](https://www.roblox.com/home?placeId="..game.JobId..") | ",
                         ["footer"] = {
-                            ["text"] = "Thunder Z • "..formattedDate.." at "..formattedTime
+                            ["text"] = "Thunder Z • "..formattedDate.." at "..formattedTime.." • "..region
                         },
                         ["image"] = {
                             ["url"] = "https://i.imgur.com/2wosJIs.gif"
@@ -768,7 +783,7 @@ for i, v in pairs(game:GetService("ReplicatedStorage"):GetChildren()) do
                         },
                         ["description"] =  "[Click here to Join for Roblox Web Version](https://www.roblox.com/home?placeId="..game.JobId..") | ",
                         ["footer"] = {
-                            ["text"] = "Thunder Z • "..formattedDate.." at "..formattedTime
+                            ["text"] = "Thunder Z • "..formattedDate.." at "..formattedTime.." • "..region
                         },
                         ["image"] = {
                             ["url"] = "https://i.imgur.com/2wosJIs.gif"
